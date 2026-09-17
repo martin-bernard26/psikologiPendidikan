@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ruang Lingkup Psikologi Pendidikan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f1e4;
+  --bg-soft:#ece4cd;
+  --paper:#fffdf7;
+  --ink:#1c2a22;
+  --ink-soft:#5c6a5e;
+  --forest:#1f3a2e;
+  --forest-deep:#122019;
+  --amber:#dd7a35;
+  --amber-soft:#f3c592;
+  --sage:#7c9473;
+  --line:#ddd2b3;
+  --radius:16px;
+  --shadow:0 12px 30px -14px rgba(20,25,20,.28);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter', sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.65;
+  padding-bottom:60px;
+}
+h1,h2,h3,h4{font-family:'Bricolage Grotesque', sans-serif; color:var(--forest-deep);}
+::selection{background:var(--amber-soft);}
+
+#progress-bar{
+  position:fixed; top:0; left:0; height:4px; width:0%;
+  background:linear-gradient(90deg, var(--amber), var(--sage));
+  z-index:1000;
+}
+
+nav{
+  position:sticky; top:4px; z-index:900;
+  background:rgba(255,253,247,.94); backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+  display:flex; align-items:center; gap:4px;
+  padding:12px 20px; overflow-x:auto;
+}
+nav .brand{font-family:'Bricolage Grotesque'; font-weight:700; font-size:1rem; color:var(--forest); margin-right:16px; white-space:nowrap;}
+nav a{
+  text-decoration:none; color:var(--ink-soft); font-size:.83rem; font-weight:600;
+  padding:8px 14px; border-radius:999px; white-space:nowrap; transition:.2s;
+}
+nav a:hover{background:var(--bg-soft); color:var(--forest);}
+nav a.active{background:var(--forest); color:#fff;}
+
+header.hero{
+  padding:66px 24px 46px; text-align:center; position:relative; overflow:hidden;
+  background:
+    radial-gradient(circle at 12% 25%, rgba(221,122,53,.13), transparent 45%),
+    radial-gradient(circle at 88% 20%, rgba(124,148,115,.16), transparent 45%);
+}
+header.hero .tag{
+  display:inline-block; font-size:.74rem; font-weight:700; color:var(--forest);
+  background:var(--amber-soft); padding:6px 16px; border-radius:999px; margin-bottom:18px;
+}
+header.hero h1{font-size:clamp(1.9rem,4.4vw,2.9rem); max-width:780px; margin:0 auto 16px; line-height:1.15; font-weight:700;}
+header.hero p.lead{max-width:620px; margin:0 auto; color:var(--ink-soft); font-size:1.03rem;}
+header.hero .author{margin-top:24px; font-size:.85rem; color:var(--ink-soft);}
+header.hero .author b{color:var(--forest);}
+
+main{max-width:940px; margin:0 auto; padding:0 22px;}
+section{padding:62px 0; border-bottom:1px dashed var(--line);}
+section:last-of-type{border-bottom:none;}
+.section-head{margin-bottom:30px;}
+.section-head .tagline{font-size:.78rem; font-weight:700; color:var(--amber); text-transform:uppercase; letter-spacing:.06em;}
+.section-head h2{font-size:clamp(1.4rem,2.8vw,1.95rem); margin-top:6px; font-weight:700;}
+.section-head p{color:var(--ink-soft); margin-top:10px; max-width:640px;}
+
+/* ---------- FLIP CARDS (Pengertian) ---------- */
+.flip-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:18px; margin-top:8px;}
+.flip-card{perspective:1200px; height:190px; cursor:pointer;}
+.flip-inner{position:relative; width:100%; height:100%; transition:transform .55s cubic-bezier(.4,.2,.2,1); transform-style:preserve-3d;}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+.flip-front,.flip-back{
+  position:absolute; inset:0; backface-visibility:hidden; border-radius:14px;
+  padding:22px; display:flex; flex-direction:column; justify-content:center;
+  border:1px solid var(--line); box-shadow:var(--shadow);
+}
+.flip-front{background:var(--paper);}
+.flip-front .num{font-family:'Bricolage Grotesque'; font-weight:800; font-size:1.6rem; color:var(--amber-soft); margin-bottom:8px;}
+.flip-front h4{font-size:1.05rem; color:var(--forest);}
+.flip-front .cue{margin-top:10px; font-size:.76rem; color:var(--ink-soft); font-weight:600;}
+.flip-back{background:var(--forest); color:#f3ead9; transform:rotateY(180deg);}
+.flip-back p{font-size:.86rem; line-height:1.55;}
+
+/* ---------- CAROUSEL (Sejarah) ---------- */
+.carousel-wrap{margin-top:10px;}
+.carousel-track-outer{overflow:hidden; border-radius:var(--radius);}
+.carousel-track{display:flex; transition:transform .45s cubic-bezier(.4,.1,.2,1);}
+.c-slide{
+  min-width:100%; background:var(--paper); border:1px solid var(--line);
+  padding:30px 32px; display:flex; flex-direction:column; gap:10px; min-height:190px; justify-content:center;
+}
+.c-slide .c-year{font-family:'Bricolage Grotesque'; font-weight:800; font-size:2.1rem; color:var(--sage);}
+.c-slide .c-title{font-weight:700; color:var(--forest-deep); font-size:1.1rem;}
+.c-slide .c-desc{color:var(--ink-soft); font-size:.92rem; max-width:600px;}
+.carousel-controls{display:flex; align-items:center; justify-content:space-between; margin-top:16px;}
+.carousel-btn{
+  width:40px; height:40px; border-radius:50%; border:1px solid var(--line); background:var(--paper);
+  cursor:pointer; font-size:1.1rem; color:var(--forest); display:flex; align-items:center; justify-content:center;
+  transition:.2s;
+}
+.carousel-btn:hover{background:var(--forest); color:#fff; border-color:var(--forest);}
+.carousel-dots{display:flex; gap:7px;}
+.carousel-dots span{
+  width:8px; height:8px; border-radius:50%; background:var(--line); cursor:pointer; transition:.2s;
+}
+.carousel-dots span.active{background:var(--amber); width:22px; border-radius:5px;}
+
+/* ---------- TABS (Obyek & Metode) ---------- */
+.tabs{display:flex; gap:8px; margin-bottom:20px; flex-wrap:wrap;}
+.tab-btn{
+  border:1px solid var(--line); background:var(--paper); color:var(--ink-soft);
+  padding:10px 18px; border-radius:999px; font-size:.87rem; font-weight:700; cursor:pointer; transition:.2s;
+}
+.tab-btn.active{background:var(--forest); color:#fff; border-color:var(--forest);}
+.tab-panel{display:none; animation:fade .3s ease;}
+.tab-panel.active{display:block;}
+@keyframes fade{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+.obj-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px;}
+.obj-card{
+  background:var(--paper); border:1px solid var(--line); border-left:4px solid var(--sage);
+  border-radius:10px; padding:16px 18px;
+}
+.obj-card h4{font-size:.96rem; color:var(--forest); margin-bottom:6px;}
+.obj-card p{font-size:.83rem; color:var(--ink-soft);}
+
+.method-list{display:flex; flex-direction:column; gap:10px;}
+.method-item{
+  background:var(--paper); border:1px solid var(--line); border-radius:12px;
+  padding:15px 18px; display:flex; gap:14px; align-items:flex-start; cursor:pointer;
+}
+.method-item .m-ico{
+  width:36px; height:36px; border-radius:9px; background:var(--amber-soft); color:var(--forest-deep);
+  display:flex; align-items:center; justify-content:center; font-weight:800; font-family:'Bricolage Grotesque'; flex-shrink:0;
+}
+.method-item .m-text h4{font-size:.94rem; color:var(--forest); margin-bottom:3px;}
+.method-item .m-text p{font-size:.83rem; color:var(--ink-soft); max-height:0; overflow:hidden; transition:max-height .3s ease;}
+.method-item.open .m-text p{max-height:100px; margin-top:4px;}
+
+/* ---------- MANFAAT ---------- */
+.benefit-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-top:8px;}
+.benefit-card{
+  background:var(--forest); color:#f3ead9; border-radius:16px; padding:22px;
+  position:relative; overflow:hidden; cursor:pointer; transition:.25s;
+}
+.benefit-card:hover{transform:translateY(-4px);}
+.benefit-card .b-ico{font-size:1.6rem; margin-bottom:10px;}
+.benefit-card h4{color:#fff; font-size:1.02rem; margin-bottom:4px;}
+.benefit-card .b-hint{font-size:.72rem; color:var(--amber-soft); font-weight:700; margin-top:6px;}
+.benefit-card ul{
+  list-style:none; margin-top:0; max-height:0; overflow:hidden; transition:max-height .35s ease; font-size:.82rem; color:#e4dcc7;
+}
+.benefit-card.open ul{max-height:220px; margin-top:12px;}
+.benefit-card ul li{padding:4px 0; border-top:1px solid rgba(255,255,255,.12);}
+.benefit-card ul li:first-child{border-top:none;}
+
+/* ---------- QUIZ ---------- */
+.quiz-box{background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:26px; box-shadow:var(--shadow);}
+.quiz-progress-track{height:8px; background:var(--bg-soft); border-radius:999px; overflow:hidden; margin-bottom:22px;}
+.quiz-progress-fill{height:100%; width:0%; background:linear-gradient(90deg,var(--sage),var(--amber)); transition:width .3s;}
+.q-count{font-size:.78rem; color:var(--ink-soft); font-weight:700; letter-spacing:.06em; text-transform:uppercase; margin-bottom:8px;}
+.q-text{font-size:1.06rem; font-weight:700; color:var(--forest-deep); margin-bottom:18px;}
+.q-options{display:flex; flex-direction:column; gap:10px;}
+.q-opt{
+  text-align:left; border:1.5px solid var(--line); background:var(--bg); border-radius:12px;
+  padding:13px 16px; font-size:.92rem; cursor:pointer; transition:.2s; font-family:'Inter';
+}
+.q-opt:hover{border-color:var(--amber);}
+.q-opt.correct{background:#e6efe1; border-color:var(--sage); color:#2c4326; font-weight:700;}
+.q-opt.wrong{background:#f8e6dc; border-color:var(--amber); color:#7c3f16; font-weight:700;}
+.q-opt[disabled]{cursor:default;}
+.q-feedback{margin-top:14px; font-size:.86rem; padding:12px 14px; border-radius:10px; display:none;}
+.q-feedback.show{display:block;}
+.q-feedback.ok{background:#e6efe1; color:#2c4326;}
+.q-feedback.no{background:#f8e6dc; color:#7c3f16;}
+.q-nav{display:flex; justify-content:flex-end; margin-top:20px;}
+.q-nav button{
+  background:var(--forest); color:#fff; border:none; padding:10px 22px; border-radius:999px;
+  font-weight:700; font-size:.88rem; cursor:pointer; opacity:.4; pointer-events:none; transition:.2s;
+}
+.q-nav button.ready{opacity:1; pointer-events:auto;}
+.q-nav button:hover.ready{background:var(--forest-deep);}
+.quiz-result{text-align:center; padding:20px 0;}
+.quiz-result .score{font-family:'Bricolage Grotesque'; font-size:3rem; color:var(--amber); font-weight:800;}
+.quiz-result p{color:var(--ink-soft); margin-top:8px;}
+.quiz-result button{
+  margin-top:18px; background:var(--sage); color:#fff; border:none; padding:11px 24px;
+  border-radius:999px; font-weight:700; cursor:pointer;
+}
+
+footer{text-align:center; padding:40px 20px 10px; color:var(--ink-soft); font-size:.82rem;}
+
+@media(max-width:640px){
+  nav{padding:10px 14px;}
+  section{padding:46px 0;}
+  .c-slide{padding:24px 20px;}
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<nav id="site-nav">
+  <span class="brand">Ruang Lingkup Psikologi Pendidikan</span>
+  <a href="#pengertian">Pengertian</a>
+  <a href="#sejarah">Sejarah</a>
+  <a href="#obyek">Obyek &amp; Metode</a>
+  <a href="#manfaat">Manfaat</a>
+  <a href="#kuis">Kuis</a>
+</nav>
+
+<header class="hero">
+  <span class="tag">Materi Perkuliahan</span>
+  <h1>Ruang Lingkup Psikologi Pendidikan</h1>
+  <p class="lead">Membahas pengertian, sejarah, obyek/cakupan dan metode kajian, serta manfaat psikologi pendidikan bagi dunia pendidikan.</p>
+  <p class="author">Disusun oleh <b>Martin Bernard, M.Pd.</b> — IKIP Siliwangi</p>
+</header>
+
+<main>
+
+  <!-- A. PENGERTIAN -->
+  <section id="pengertian">
+    <div class="section-head">
+      <span class="tagline">Bagian A</span>
+      <h2>Pengertian Psikologi Pendidikan</h2>
+      <p>Klik setiap kartu untuk membalik dan membaca definisinya.</p>
+    </div>
+    <div class="flip-grid" id="flip-grid"></div>
+  </section>
+
+  <!-- B. SEJARAH -->
+  <section id="sejarah">
+    <div class="section-head">
+      <span class="tagline">Bagian B</span>
+      <h2>Sejarah Psikologi Pendidikan</h2>
+      <p>Geser menggunakan tombol panah atau titik indikator untuk menelusuri lini masa.</p>
+    </div>
+    <div class="carousel-wrap">
+      <div class="carousel-track-outer">
+        <div class="carousel-track" id="carousel-track"></div>
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-btn" id="prev-btn">←</button>
+        <div class="carousel-dots" id="carousel-dots"></div>
+        <button class="carousel-btn" id="next-btn2">→</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- C. OBYEK & METODE -->
+  <section id="obyek">
+    <div class="section-head">
+      <span class="tagline">Bagian C</span>
+      <h2>Obyek/Cakupan dan Metode Psikologi Pendidikan</h2>
+      <p>Pilih tab untuk melihat obyek kajian atau metode yang digunakan dalam psikologi pendidikan.</p>
+    </div>
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="obyek-tab">Obyek / Cakupan</button>
+      <button class="tab-btn" data-tab="metode-tab">Metode Kajian</button>
+    </div>
+    <div class="tab-panel active" id="obyek-tab">
+      <div class="obj-grid" id="obj-grid"></div>
+    </div>
+    <div class="tab-panel" id="metode-tab">
+      <div class="method-list" id="method-list"></div>
+    </div>
+  </section>
+
+  <!-- D. MANFAAT -->
+  <section id="manfaat">
+    <div class="section-head">
+      <span class="tagline">Bagian D</span>
+      <h2>Manfaat Psikologi Pendidikan</h2>
+      <p>Klik setiap kartu untuk melihat manfaat bagi masing-masing pihak.</p>
+    </div>
+    <div class="benefit-grid" id="benefit-grid"></div>
+  </section>
+
+  <!-- KUIS -->
+  <section id="kuis">
+    <div class="section-head">
+      <span class="tagline">Uji Pemahaman</span>
+      <h2>Kuis Singkat</h2>
+      <p>Jawab 5 pertanyaan berikut untuk menguji pemahaman Anda.</p>
+    </div>
+    <div class="quiz-box" id="quiz-box"></div>
+  </section>
+
+</main>
+
+<footer>Materi Ruang Lingkup Psikologi Pendidikan — Martin Bernard, M.Pd., IKIP Siliwangi</footer>
+
+<script>
+/* ================= DATA ================= */
+const pengertianData = [
+  {name:"Secara Umum", body:"Psikologi pendidikan adalah cabang ilmu psikologi yang mengkaji secara ilmiah bagaimana manusia belajar dan berkembang dalam konteks pendidikan, termasuk proses mengajar."},
+  {name:"Menurut Witherington", body:"Studi sistematis tentang proses dan faktor yang berkaitan dengan pendidikan manusia, bertujuan membantu pendidik memahami peserta didiknya."},
+  {name:"Menurut Reber", body:"Penerapan prinsip-prinsip psikologi dalam pendidikan, mencakup pembelajaran, pengajaran, dan dinamika kelas."},
+  {name:"Menurut Muhibbin Syah", body:"Bidang studi psikologi yang menjelaskan proses belajar-mengajar serta mengembangkan cara menyikapi masalah yang timbul di dalamnya."},
+  {name:"Simpulan Integratif", body:"Menjembatani teori psikologi dengan praktik pendidikan sehari-hari, dari perancangan pembelajaran hingga penanganan masalah belajar."}
+];
+
+const sejarahData = [
+  {year:"1879", title:"Laboratorium Psikologi Eksperimental", desc:"Wilhelm Wundt mendirikan laboratorium psikologi eksperimental pertama di Leipzig, meletakkan dasar metode ilmiah bagi psikologi."},
+  {year:"1890-an", title:"Psikologi untuk Guru", desc:"William James memberi kuliah 'Talks to Teachers on Psychology', menjembatani teori psikologi dengan praktik mengajar."},
+  {year:"1890-an", title:"Gerakan Child Study", desc:"G. Stanley Hall mempelopori kajian ilmiah tentang perkembangan anak dan turut mendirikan American Psychological Association."},
+  {year:"1903", title:"Lahirnya Psikologi Pendidikan Modern", desc:"Edward Lee Thorndike menerbitkan buku 'Educational Psychology' dan memperkenalkan hukum belajar (law of effect)."},
+  {year:"1905", title:"Tes Intelegensi Pertama", desc:"Alfred Binet dan Théodore Simon mengembangkan skala tes intelegensi pertama, fondasi asesmen pendidikan."},
+  {year:"1920–1950", title:"Teori Perkembangan Kognitif", desc:"Jean Piaget mengembangkan teori tahapan perkembangan kognitif anak yang banyak diterapkan dalam pendidikan."},
+  {year:"1950–1960-an", title:"Behaviorisme dalam Pendidikan", desc:"B.F. Skinner mengembangkan prinsip pengkondisian operan dan pembelajaran terprogram."},
+  {year:"Kini", title:"Psikologi Pendidikan Kontemporer", desc:"Berkembang menjadi bidang multidisiplin yang mendukung praktik pengajaran, asesmen, dan layanan bimbingan konseling di sekolah."}
+];
+
+const objData = [
+  {title:"Peserta Didik", body:"Karakteristik, perkembangan, dan perbedaan individual peserta didik sebagai subjek belajar."},
+  {title:"Proses Belajar", body:"Bagaimana individu memperoleh pengetahuan, keterampilan, dan sikap baru."},
+  {title:"Proses Pembelajaran/Pengajaran", body:"Strategi, metode, dan interaksi guru-peserta didik dalam kegiatan belajar mengajar."},
+  {title:"Lingkungan Pendidikan", body:"Kondisi fisik, sosial, dan psikologis yang memengaruhi proses belajar di sekolah maupun keluarga."},
+  {title:"Evaluasi Hasil Belajar", body:"Pengukuran dan penilaian pencapaian belajar peserta didik secara objektif."}
+];
+
+const methodData = [
+  {ico:"O", title:"Observasi", body:"Mengamati perilaku peserta didik secara langsung dalam situasi belajar yang alami maupun terstruktur."},
+  {ico:"E", title:"Eksperimen", body:"Menguji hubungan sebab-akibat antarvariabel pendidikan melalui manipulasi kondisi secara terkontrol."},
+  {ico:"T", title:"Tes Psikologis (Psikometri)", body:"Mengukur kemampuan, minat, bakat, atau kepribadian peserta didik menggunakan instrumen baku."},
+  {ico:"S", title:"Studi Kasus", body:"Mengkaji secara mendalam satu individu atau kelompok kecil untuk memahami masalah belajar secara komprehensif."},
+  {ico:"A", title:"Survei/Angket", body:"Mengumpulkan data dari sejumlah responden melalui kuesioner untuk melihat pola atau kecenderungan umum."},
+  {ico:"K", title:"Metode Korelasional", body:"Mengukur hubungan antara dua variabel atau lebih, misalnya motivasi belajar dengan prestasi akademik."}
+];
+
+const benefitData = [
+  {icon:"🧑‍🏫", title:"Bagi Guru", items:["Memahami karakteristik dan gaya belajar peserta didik","Merancang strategi pengajaran yang efektif","Mengelola kelas dan mengatasi masalah perilaku","Meningkatkan motivasi belajar peserta didik"]},
+  {icon:"🎓", title:"Bagi Peserta Didik", items:["Memahami cara belajar yang sesuai dengan dirinya","Mendapat bimbingan yang tepat sesuai tahap perkembangan","Meningkatkan kepercayaan diri dan penyesuaian sosial"]},
+  {icon:"👨‍👩‍👧", title:"Bagi Orang Tua", items:["Memahami tahap perkembangan anak","Mendukung proses belajar anak di rumah","Berkolaborasi dengan sekolah secara lebih efektif"]},
+  {icon:"🏫", title:"Bagi Sekolah/Lembaga", items:["Merancang kurikulum yang sesuai kebutuhan peserta didik","Mengembangkan sistem evaluasi yang lebih objektif","Menciptakan iklim sekolah yang kondusif"]}
+];
+
+const quizData = [
+  {q:"Psikologi pendidikan secara umum mempelajari...", opts:["Struktur organisasi sekolah","Proses belajar dan perkembangan peserta didik dalam konteks pendidikan","Anggaran pendidikan nasional","Arsitektur bangunan sekolah"], correct:1, fb:"Psikologi pendidikan berfokus pada proses belajar dan perkembangan peserta didik dalam konteks pendidikan."},
+  {q:"Tokoh yang menerbitkan buku 'Educational Psychology' pada tahun 1903 adalah...", opts:["Wilhelm Wundt","Jean Piaget","Edward Lee Thorndike","Alfred Binet"], correct:2, fb:"Edward Lee Thorndike menerbitkan 'Educational Psychology' pada 1903 dan memperkenalkan hukum belajar."},
+  {q:"Metode yang paling tepat digunakan untuk mengukur minat dan bakat peserta didik adalah...", opts:["Observasi","Tes psikologis (psikometri)","Eksperimen","Studi korelasional"], correct:1, fb:"Tes psikologis (psikometri) digunakan untuk mengukur minat, bakat, dan kepribadian menggunakan instrumen baku."},
+  {q:"Berikut ini yang termasuk obyek/cakupan kajian psikologi pendidikan adalah...", opts:["Anggaran belanja sekolah","Proses belajar dan lingkungan pendidikan","Desain seragam sekolah","Jadwal libur nasional"], correct:1, fb:"Obyek kajian psikologi pendidikan mencakup peserta didik, proses belajar, pembelajaran, lingkungan pendidikan, dan evaluasi hasil belajar."},
+  {q:"Manfaat psikologi pendidikan bagi guru terutama terlihat dalam hal...", opts:["Menentukan gaji guru","Merancang strategi pengajaran yang sesuai karakteristik peserta didik","Menetapkan libur sekolah","Mengatur anggaran sarana"], correct:1, fb:"Psikologi pendidikan membantu guru memahami karakteristik peserta didik untuk merancang strategi pengajaran yang efektif."}
+];
+
+/* ================= RENDER: PENGERTIAN (flip cards) ================= */
+const flipGrid = document.getElementById('flip-grid');
+pengertianData.forEach((d,i)=>{
+  const card = document.createElement('div');
+  card.className = 'flip-card';
+  card.onclick = ()=> card.classList.toggle('flipped');
+  card.innerHTML = `
+    <div class="flip-inner">
+      <div class="flip-front">
+        <div class="num">${String(i+1).padStart(2,'0')}</div>
+        <h4>${d.name}</h4>
+        <div class="cue">Klik untuk membalik →</div>
+      </div>
+      <div class="flip-back"><p>${d.body}</p></div>
+    </div>`;
+  flipGrid.appendChild(card);
+});
+
+/* ================= RENDER: SEJARAH (carousel) ================= */
+const track = document.getElementById('carousel-track');
+const dotsWrap = document.getElementById('carousel-dots');
+let slideIndex = 0;
+sejarahData.forEach((s,i)=>{
+  const slide = document.createElement('div');
+  slide.className = 'c-slide';
+  slide.innerHTML = `
+    <div class="c-year">${s.year}</div>
+    <div class="c-title">${s.title}</div>
+    <div class="c-desc">${s.desc}</div>`;
+  track.appendChild(slide);
+
+  const dot = document.createElement('span');
+  dot.onclick = ()=> goToSlide(i);
+  dotsWrap.appendChild(dot);
+});
+function updateCarousel(){
+  track.style.transform = `translateX(-${slideIndex*100}%)`;
+  [...dotsWrap.children].forEach((d,i)=> d.classList.toggle('active', i===slideIndex));
+}
+function goToSlide(i){ slideIndex = i; updateCarousel(); }
+document.getElementById('prev-btn').onclick = ()=>{
+  slideIndex = (slideIndex - 1 + sejarahData.length) % sejarahData.length;
+  updateCarousel();
+};
+document.getElementById('next-btn2').onclick = ()=>{
+  slideIndex = (slideIndex + 1) % sejarahData.length;
+  updateCarousel();
+};
+updateCarousel();
+
+/* ================= RENDER: OBYEK & METODE ================= */
+const objGrid = document.getElementById('obj-grid');
+objData.forEach(o=>{
+  const div = document.createElement('div');
+  div.className = 'obj-card';
+  div.innerHTML = `<h4>${o.title}</h4><p>${o.body}</p>`;
+  objGrid.appendChild(div);
+});
+
+const methodList = document.getElementById('method-list');
+methodData.forEach(m=>{
+  const div = document.createElement('div');
+  div.className = 'method-item';
+  div.onclick = ()=> div.classList.toggle('open');
+  div.innerHTML = `
+    <div class="m-ico">${m.ico}</div>
+    <div class="m-text"><h4>${m.title}</h4><p>${m.body}</p></div>`;
+  methodList.appendChild(div);
+});
+
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.onclick = ()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=> b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p=> p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  };
+});
+
+/* ================= RENDER: MANFAAT ================= */
+const benefitGrid = document.getElementById('benefit-grid');
+benefitData.forEach(b=>{
+  const div = document.createElement('div');
+  div.className = 'benefit-card';
+  div.onclick = ()=> div.classList.toggle('open');
+  div.innerHTML = `
+    <div class="b-ico">${b.icon}</div>
+    <h4>${b.title}</h4>
+    <div class="b-hint">Klik untuk lihat manfaat</div>
+    <ul>${b.items.map(it=>`<li>${it}</li>`).join('')}</ul>`;
+  benefitGrid.appendChild(div);
+});
+
+/* ================= QUIZ ================= */
+let currentQ = 0, score = 0;
+const quizBox = document.getElementById('quiz-box');
+function renderQuiz(){
+  if(currentQ >= quizData.length){
+    quizBox.innerHTML = `
+      <div class="quiz-result">
+        <div class="score">${score}/${quizData.length}</div>
+        <p>${score === quizData.length ? 'Sempurna! Pemahaman Anda sangat baik.' : score >= quizData.length/2 ? 'Bagus! Terus perdalam materinya.' : 'Yuk baca ulang materi di atas, lalu coba lagi.'}</p>
+        <button onclick="restartQuiz()">Ulangi Kuis</button>
+      </div>`;
+    return;
+  }
+  const item = quizData[currentQ];
+  quizBox.innerHTML = `
+    <div class="quiz-progress-track"><div class="quiz-progress-fill" style="width:${(currentQ/quizData.length)*100}%"></div></div>
+    <div class="q-count">Pertanyaan ${currentQ+1} dari ${quizData.length}</div>
+    <div class="q-text">${item.q}</div>
+    <div class="q-options" id="q-options"></div>
+    <div class="q-feedback" id="q-feedback"></div>
+    <div class="q-nav"><button id="next-btn" onclick="nextQuestion()">Lanjut</button></div>`;
+  const optsEl = document.getElementById('q-options');
+  item.opts.forEach((opt,i)=>{
+    const b = document.createElement('button');
+    b.className = 'q-opt';
+    b.textContent = opt;
+    b.onclick = ()=> answerQuestion(i);
+    optsEl.appendChild(b);
+  });
+}
+function answerQuestion(i){
+  const item = quizData[currentQ];
+  const opts = document.querySelectorAll('#q-options .q-opt');
+  opts.forEach(o=> o.setAttribute('disabled','true'));
+  opts[item.correct].classList.add('correct');
+  if(i !== item.correct){ opts[i].classList.add('wrong'); } else { score++; }
+  const fb = document.getElementById('q-feedback');
+  fb.classList.add('show', i === item.correct ? 'ok' : 'no');
+  fb.textContent = item.fb;
+  document.getElementById('next-btn').classList.add('ready');
+}
+function nextQuestion(){ currentQ++; renderQuiz(); }
+function restartQuiz(){ currentQ = 0; score = 0; renderQuiz(); }
+renderQuiz();
+
+/* ================= PROGRESS BAR + SCROLL SPY ================= */
+const progressBar = document.getElementById('progress-bar');
+const navLinks = document.querySelectorAll('#site-nav a');
+const sections = document.querySelectorAll('main section');
+window.addEventListener('scroll', ()=>{
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  progressBar.style.width = (scrollTop/docHeight*100) + '%';
+  let currentSection = '';
+  sections.forEach(sec=>{
+    const rect = sec.getBoundingClientRect();
+    if(rect.top <= 140 && rect.bottom >= 140){ currentSection = sec.id; }
+  });
+  navLinks.forEach(link=>{
+    link.classList.toggle('active', link.getAttribute('href') === '#'+currentSection);
+  });
+});
+</script>
+</body>
+</html>

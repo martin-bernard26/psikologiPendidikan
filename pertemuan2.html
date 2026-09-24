@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ruang Lingkup Psikologi Pendidikan</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbf7f0;--card:#fff;--ink:#1d2b2a;--mute:#5b6b69;--pri:#0f766e;--acc:#e8553d;--soft:#e3f1ee;--line:#e6dfd2;--ok:#15803d;--bad:#b91c1c;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101a19;--card:#172423;--ink:#eaf2f0;--mute:#9db3af;--pri:#4fd1c0;--acc:#ff8a73;--soft:#1d3130;--line:#2a3f3d;--ok:#4ade80;--bad:#f87171}}
+:root[data-theme="dark"]{--bg:#101a19;--card:#172423;--ink:#eaf2f0;--mute:#9db3af;--pri:#4fd1c0;--acc:#ff8a73;--soft:#1d3130;--line:#2a3f3d;--ok:#4ade80;--bad:#f87171}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 'Plus Jakarta Sans',system-ui,sans-serif}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;line-height:1.2;margin:0}
+.hero{padding:44px 20px 36px;text-align:center;background:radial-gradient(circle at 15% 20%,var(--soft),transparent 55%),radial-gradient(circle at 85% 80%,color-mix(in srgb,var(--acc) 18%,transparent),transparent 50%)}
+.hero small{letter-spacing:.14em;text-transform:uppercase;color:var(--acc);font-weight:700;font-size:12px}
+.hero h1{font-size:clamp(30px,7vw,52px);margin:10px auto;max-width:760px}
+.hero p{color:var(--mute);max-width:600px;margin:0 auto 18px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.chips a{background:var(--card);border:1px solid var(--line);padding:7px 14px;border-radius:99px;color:var(--ink);text-decoration:none;font-size:14px;font-weight:500}
+.chips a b{color:var(--acc);margin-right:6px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.navin{max-width:900px;margin:auto;display:flex;align-items:center;gap:6px;padding:8px 12px;overflow-x:auto}
+.navin a{white-space:nowrap;padding:6px 13px;border-radius:99px;color:var(--mute);text-decoration:none;font-size:14px;font-weight:700}
+.navin a.on{background:var(--pri);color:var(--bg)}
+#theme{margin-left:auto;background:none;border:1px solid var(--line);color:var(--ink);border-radius:99px;padding:5px 11px;cursor:pointer}
+#bar{height:4px;background:var(--line)}#bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pri),var(--acc));transition:width .5s}
+main{max-width:900px;margin:auto;padding:8px 16px 60px}
+section{padding-top:38px}
+.lab{display:inline-block;background:var(--acc);color:#fff;font-weight:800;border-radius:10px;padding:2px 12px;margin-bottom:8px;font-family:'Fraunces',serif}
+section h2{font-size:clamp(24px,5vw,34px);margin-bottom:6px}
+.lead{color:var(--mute);margin:0 0 18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px}
+.eq{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:8px;align-items:stretch;margin-bottom:12px}
+.eq span{align-self:center;font-size:22px;font-weight:800;color:var(--acc)}
+.eq button,.pill{font:inherit;cursor:pointer;background:var(--card);color:var(--ink);border:2px solid var(--line);border-radius:14px;padding:12px 8px;font-weight:700;transition:.2s}
+.eq button.on,.pill.on{border-color:var(--pri);background:var(--soft)}
+#eqtxt{min-height:70px}
+.acc{margin-top:14px;display:grid;gap:8px}
+.acc details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px}
+.acc summary{cursor:pointer;font-weight:700}
+.acc p{margin:8px 0 0;color:var(--mute)}
+.tl{display:grid;grid-template-columns:230px 1fr;gap:16px}
+.tlist{display:flex;flex-direction:column;gap:6px;border-left:3px solid var(--line);padding-left:12px}
+.tlist button{font:inherit;text-align:left;cursor:pointer;background:none;border:0;color:var(--mute);padding:7px 10px;border-radius:10px;position:relative}
+.tlist button::before{content:"";position:absolute;left:-21px;top:14px;width:11px;height:11px;border-radius:50%;background:var(--line);border:2px solid var(--bg)}
+.tlist button.on{background:var(--soft);color:var(--ink);font-weight:700}
+.tlist button.on::before{background:var(--acc)}
+.tlist button small{display:block;font-size:12px}
+.tl .card h3{font-size:22px;margin:4px 0 6px}
+.tag{font-size:12px;font-weight:700;color:var(--acc);letter-spacing:.06em;text-transform:uppercase}
+.tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.tab{font:inherit;cursor:pointer;padding:8px 18px;border-radius:99px;border:2px solid var(--line);background:var(--card);color:var(--ink);font-weight:700}
+.tab.on{background:var(--pri);border-color:var(--pri);color:var(--bg)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.fc{cursor:pointer;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;transition:.2s}
+.fc:hover{transform:translateY(-3px);border-color:var(--pri)}
+.fc .ic{font-size:28px}.fc h3{font-size:18px;margin:4px 0}
+.fc ul{margin:8px 0 0;padding-left:18px;color:var(--mute);font-size:14px;display:none}
+.fc.open ul{display:block}.fc .hint{font-size:12px;color:var(--acc);font-weight:700}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.pill{padding:8px 14px;border-radius:99px}
+.mrow{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.mrow div{background:var(--soft);border-radius:12px;padding:10px 14px;font-size:14px}
+.mrow b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+.plus b{color:var(--ok)}.minus b{color:var(--bad)}
+.ul{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+.ul li{padding-left:28px;position:relative}
+.ul li::before{content:"✓";position:absolute;left:0;top:1px;width:20px;height:20px;border-radius:50%;background:var(--pri);color:var(--bg);font-size:12px;text-align:center;line-height:20px}
+.qh{display:flex;justify-content:space-between;color:var(--mute);font-size:14px;margin-bottom:8px}
+.opt{display:block;width:100%;text-align:left;font:inherit;cursor:pointer;margin:8px 0;padding:12px 16px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--ink)}
+.opt:hover:not(:disabled){border-color:var(--pri)}
+.opt.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 15%,var(--card))}
+.opt.bad{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 15%,var(--card))}
+.fb{margin-top:10px;padding:12px 16px;border-radius:12px;background:var(--soft);display:none}
+.btn{font:inherit;font-weight:700;cursor:pointer;margin-top:12px;padding:10px 22px;border-radius:99px;border:0;background:var(--acc);color:#fff}
+.score{text-align:center}.score .big{font:800 56px 'Fraunces',serif;color:var(--pri)}
+footer{text-align:center;color:var(--mute);font-size:13px;padding:24px 16px 40px;border-top:1px solid var(--line)}
+@media(max-width:640px){.tl{grid-template-columns:1fr}.tlist{flex-direction:row;overflow-x:auto;border-left:0;padding:0 0 6px}.tlist button{white-space:nowrap;flex:none}.tlist button::before{display:none}.eq{grid-template-columns:1fr}.eq span{text-align:center}.mrow{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <small>Modul Interaktif · Psikologi Pendidikan</small>
+  <h1>Ruang Lingkup Psikologi Pendidikan</h1>
+  <p>Jelajahi pengertian, sejarah, objek dan metode, serta manfaat psikologi pendidikan, lalu uji pemahamanmu lewat kuis.</p>
+  <div class="chips"><a href="#a"><b>A</b>Pengertian</a><a href="#b"><b>B</b>Sejarah</a><a href="#c"><b>C</b>Objek &amp; Metode</a><a href="#d"><b>D</b>Manfaat</a></div>
+</header>
+<nav><div class="navin" id="nav">
+  <a href="#a">Pengertian</a><a href="#b">Sejarah</a><a href="#c">Objek &amp; Metode</a><a href="#d">Manfaat</a><a href="#q">Kuis</a>
+  <button id="theme" aria-label="Ganti tema">🌓</button></div><div id="bar"><i></i></div></nav>
+<main>
+<section id="a"><span class="lab">A</span><h2>Pengertian Psikologi Pendidikan</h2><p class="lead">Klik tiap kotak untuk membongkar istilahnya.</p>
+  <div class="eq"><button data-k="0">Psikologi</button><span>+</span><button data-k="1">Pendidikan</button><span>=</span><button data-k="2">Psikologi Pendidikan</button></div>
+  <div class="card" id="eqtxt">Pilih salah satu kotak di atas.</div>
+  <div class="acc" id="acc"></div></section>
+<section id="b"><span class="lab">B</span><h2>Sejarah Psikologi Pendidikan</h2><p class="lead">Pilih periode untuk melihat tokoh dan sumbangannya.</p>
+  <div class="tl"><div class="tlist" id="tlist"></div><div class="card" id="tdet"></div></div></section>
+<section id="c"><span class="lab">C</span><h2>Objek/Cakupan dan Metode</h2><p class="lead">Apa yang dipelajari, dan bagaimana cara mempelajarinya?</p>
+  <div class="tabs"><button class="tab on" data-t="obj">Objek / Cakupan</button><button class="tab" data-t="met">Metode</button></div>
+  <div id="obj"><div class="grid" id="fcs"></div></div>
+  <div id="met" hidden><div class="pills" id="pills"></div><div class="card" id="mdet"></div></div></section>
+<section id="d"><span class="lab">D</span><h2>Manfaat Psikologi Pendidikan</h2><p class="lead">Pilih peran untuk melihat manfaatnya.</p>
+  <div class="tabs" id="rtabs"></div><div class="card"><h3 id="rt"></h3><ul class="ul" id="rl"></ul></div></section>
+<section id="q"><span class="lab">✎</span><h2>Kuis Pemahaman</h2><p class="lead">Jawaban langsung diberi umpan balik.</p><div class="card" id="quiz"></div></section>
+</main>
+<footer>Materi: Martin Bernard, M.Pd. · IKIP Siliwangi</footer>
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+// Tema
+$('#theme').onclick=()=>{const r=document.documentElement,d=getComputedStyle(r).getPropertyValue('--bg').trim()==='#101a19';r.dataset.theme=d?'light':'dark'};
+// A. Formula
+const EQ=[["Psikologi","Ilmu yang mempelajari perilaku dan proses mental manusia: cara berpikir, merasa, mengingat, dan bertindak."],["Pendidikan","Usaha sadar dan terencana untuk mengembangkan potensi peserta didik melalui proses pembelajaran."],["Psikologi Pendidikan","Cabang psikologi yang mempelajari perilaku dan proses mental manusia dalam setting pendidikan, khususnya belajar dan mengajar, lalu menerapkannya untuk meningkatkan mutu pendidikan."]];
+$$('.eq button').forEach(b=>b.onclick=()=>{$$('.eq button').forEach(x=>x.classList.remove('on'));b.classList.add('on');const e=EQ[b.dataset.k];$('#eqtxt').innerHTML=`<b>${e[0]}</b><br>${e[1]}`});
+const AC=[["Tiga unsur utama","Peserta didik (yang belajar), guru/pendidik (yang mengajar), dan proses/situasi belajar-mengajar yang mempertemukan keduanya."],["Ilmu teoretis sekaligus terapan","Ia menghasilkan teori dan temuan penelitian tentang belajar, lalu dipakai untuk memecahkan masalah nyata di kelas."],["Tujuan","Memahami, menjelaskan, memprediksi, dan memperbaiki proses pembelajaran agar hasil belajar optimal."],["Beda dengan psikologi umum","Psikologi umum mengkaji perilaku manusia secara luas. Psikologi pendidikan memusatkan kajian pada perilaku dalam konteks belajar dan pendidikan."]];
+$('#acc').innerHTML=AC.map(a=>`<details><summary>${a[0]}</summary><p>${a[1]}</p></details>`).join('');
+// B. Sejarah
+const TL=[["Yunani Kuno","Plato &amp; Aristoteles","Membahas hakikat jiwa, cara manusia belajar, dan tujuan pendidikan. Gagasan bahwa pendidikan perlu memahami watak manusia sudah muncul di sini."],
+["Abad 17–18","Comenius, Locke, Rousseau, Pestalozzi","Locke mengenalkan gagasan <i>tabula rasa</i>. Rousseau menekankan pendidikan yang sesuai tahap perkembangan anak. Pestalozzi mengembangkan pengajaran yang berangkat dari pengalaman anak."],
+["Abad 19","Herbart &amp; Wundt","Herbart mengusulkan pengajaran yang berlandaskan psikologi. Pada 1879 Wilhelm Wundt mendirikan laboratorium psikologi eksperimental di Leipzig, sehingga psikologi menjadi ilmu mandiri."],
+["1890-an","James, Hall, Dewey","William James menulis <i>Talks to Teachers</i> (1899) untuk menerapkan psikologi di kelas. G. Stanley Hall memelopori gerakan studi anak. John Dewey menekankan <i>learning by doing</i> dan anak sebagai pusat pembelajaran."],
+["1903–1905","Thorndike &amp; Binet","Edward Thorndike menerbitkan <i>Educational Psychology</i> (1903) dan sering dijuluki bapak psikologi pendidikan. Binet dan Simon (1905) menyusun tes inteligensi untuk mengenali anak yang butuh bantuan belajar."],
+["1920–1950-an","Behaviorisme, Piaget, Vygotsky","Watson dan Skinner memandang belajar sebagai perubahan perilaku akibat stimulus dan penguatan. Piaget dan Vygotsky menjelaskan perkembangan kognitif dan peran interaksi sosial dalam belajar."],
+["1950–1970-an","Revolusi kognitif","Perhatian beralih ke proses mental: memori, pemrosesan informasi, dan pemecahan masalah. Tokoh: Bruner, Ausubel, Bloom (taksonomi 1956), Gagné."],
+["1980-an–kini","Konstruktivisme &amp; kontemporer","Konstruktivisme sosial, regulasi diri dan efikasi diri (Bandura), kecerdasan majemuk (Gardner), neurosains pendidikan, pembelajaran sosial-emosional, dan teknologi digital."]];
+$('#tlist').innerHTML=TL.map((t,i)=>`<button data-i="${i}">${t[0]}<small>${t[1]}</small></button>`).join('');
+function tl(i){$$('#tlist button').forEach((b,j)=>b.classList.toggle('on',i==j));const t=TL[i];$('#tdet').innerHTML=`<span class="tag">${t[0]}</span><h3>${t[1]}</h3><p>${t[2]}</p>`}
+$$('#tlist button').forEach(b=>b.onclick=()=>tl(+b.dataset.i));tl(0);
+// C. Objek & metode
+const OB=[["🧒","Peserta didik",["Perkembangan fisik, kognitif, sosial-emosional","Inteligensi, bakat, minat","Perbedaan individu dan gaya belajar"]],["🧠","Proses belajar",["Teori belajar","Motivasi belajar","Memori, berpikir, transfer belajar"]],["🏫","Situasi belajar-mengajar",["Peran dan karakter guru","Lingkungan dan iklim kelas","Strategi, media, dan manajemen kelas"]],["📊","Pengukuran &amp; evaluasi",["Tes prestasi dan psikologi","Penilaian hasil belajar","Identifikasi kesulitan belajar"]]];
+$('#fcs').innerHTML=OB.map(o=>`<div class="fc"><div class="ic">${o[0]}</div><h3>${o[1]}</h3><span class="hint">Klik untuk buka</span><ul>${o[2].map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join('');
+$$('.fc').forEach(c=>c.onclick=()=>c.classList.toggle('open'));
+const ME=[["Eksperimen","Memberi perlakuan pada satu kelompok dan membandingkannya dengan kelompok kontrol.","Membandingkan hasil belajar kelas yang memakai diskusi kelompok dengan kelas ceramah.","Dapat menunjukkan hubungan sebab-akibat.","Sulit mengendalikan semua variabel di sekolah."],
+["Observasi","Mengamati perilaku secara langsung dan sistematis.","Mencatat keterlibatan siswa selama pelajaran berlangsung.","Data perilaku nyata.","Bergantung pada subjektivitas pengamat."],
+["Survei/Kuesioner","Mengumpulkan data dari banyak responden melalui pertanyaan tertulis.","Angket motivasi belajar seluruh siswa kelas VII.","Cepat dan menjangkau banyak orang.","Jawaban bisa kurang jujur atau dangkal."],
+["Wawancara","Tanya jawab mendalam untuk menggali pandangan dan pengalaman.","Menanyai siswa tentang penyebab malas belajar.","Data mendalam dan fleksibel.","Memakan waktu dan sulit digeneralisasi."],
+["Studi kasus","Menelaah satu individu atau kelompok secara mendalam.","Menelusuri kesulitan membaca seorang siswa dari berbagai sumber.","Gambaran utuh dan rinci.","Hasilnya sulit berlaku umum."],
+["Tes psikologi","Instrumen baku untuk mengukur inteligensi, bakat, minat, atau kepribadian.","Tes inteligensi untuk penjurusan atau layanan khusus.","Objektif dan terstandar.","Perlu tenaga terlatih dan bisa bias budaya."],
+["PTK","Penelitian tindakan kelas oleh guru untuk memperbaiki pembelajarannya sendiri, dalam siklus.","Guru menerapkan media baru lalu merefleksikan dampaknya.","Langsung memperbaiki praktik.","Cakupan terbatas pada satu kelas."]];
+$('#pills').innerHTML=ME.map((m,i)=>`<button class="pill" data-i="${i}">${m[0]}</button>`).join('');
+function me(i){$$('.pill').forEach((b,j)=>b.classList.toggle('on',i==j));const m=ME[i];$('#mdet').innerHTML=`<h3>${m[0]}</h3><p>${m[1]}</p><p><b>Contoh:</b> ${m[2]}</p><div class="mrow"><div class="plus"><b>Kelebihan</b>${m[3]}</div><div class="minus"><b>Keterbatasan</b>${m[4]}</div></div>`}
+$$('.pill').forEach(b=>b.onclick=()=>me(+b.dataset.i));me(0);
+$$('.tab').forEach(t=>t.onclick=()=>{$$('.tab').forEach(x=>x.classList.toggle('on',x==t));$('#obj').hidden=t.dataset.t!='obj';$('#met').hidden=t.dataset.t!='met'});
+// D. Manfaat
+const MA=[["👩‍🏫 Guru",["Memahami karakteristik dan kebutuhan tiap peserta didik","Memilih strategi, metode, dan media yang sesuai","Mengelola kelas dan menciptakan iklim belajar yang positif","Merancang penilaian yang adil dan bermakna","Mengenali dini kesulitan belajar dan masalah perilaku"]],
+["🎒 Peserta didik",["Mengenal cara belajar yang efektif bagi dirinya","Membangun motivasi dan regulasi diri","Mengelola emosi dan hubungan sosial di sekolah"]],
+["🧭 Konselor &amp; sekolah",["Dasar layanan bimbingan dan konseling","Menyusun kurikulum dan kebijakan yang sesuai perkembangan siswa","Menangani siswa berkebutuhan khusus secara tepat"]],
+["👪 Orang tua",["Memahami tahap perkembangan anak","Mendampingi belajar di rumah dengan cara yang tepat","Bekerja sama dengan sekolah"]]];
+$('#rtabs').innerHTML=MA.map((m,i)=>`<button class="tab" data-i="${i}">${m[0]}</button>`).join('');
+function ro(i){$$('#rtabs .tab').forEach((b,j)=>b.classList.toggle('on',i==j));$('#rt').innerHTML='Manfaat bagi '+MA[i][0].split(' ').slice(1).join(' ');$('#rl').innerHTML=MA[i][1].map(x=>`<li>${x}</li>`).join('')}
+$$('#rtabs .tab').forEach(b=>b.onclick=()=>ro(+b.dataset.i));ro(0);
+// Kuis
+const QZ=[["Pengertian yang paling tepat tentang psikologi pendidikan adalah...",["Ilmu yang mempelajari seluruh perilaku hewan dan manusia","Cabang psikologi yang mengkaji perilaku dan proses belajar-mengajar dalam setting pendidikan","Ilmu tentang manajemen keuangan sekolah","Ilmu yang hanya mempelajari kecerdasan anak"],1,"Psikologi pendidikan berfokus pada perilaku manusia dalam konteks belajar dan mengajar."],
+["Tokoh yang menerbitkan <i>Educational Psychology</i> (1903) dan dijuluki bapak psikologi pendidikan adalah...",["Wilhelm Wundt","Alfred Binet","Edward L. Thorndike","Jean Piaget"],2,"Thorndike menekankan pengukuran dan hubungan stimulus-respons dalam belajar."],
+["Peristiwa 1879 di Leipzig penting karena...",["Terbitnya Talks to Teachers","Wundt mendirikan laboratorium psikologi eksperimental","Binet menyusun tes inteligensi","Dewey membuka sekolah laboratorium"],1,"Laboratorium Wundt menandai psikologi sebagai ilmu mandiri."],
+["Berikut ini yang BUKAN objek/cakupan psikologi pendidikan adalah...",["Perkembangan peserta didik","Proses dan motivasi belajar","Situasi belajar-mengajar","Penyusunan anggaran belanja negara"],3,"Anggaran negara bukan kajian psikologi pendidikan."],
+["Guru ingin tahu apakah metode diskusi lebih efektif daripada ceramah dengan membandingkan dua kelas. Metode yang tepat adalah...",["Eksperimen","Wawancara","Studi kasus","Observasi bebas"],0,"Perbandingan kelompok perlakuan dan kontrol adalah ciri eksperimen."],
+["Salah satu manfaat psikologi pendidikan bagi guru adalah...",["Menyeragamkan cara belajar semua siswa","Memilih strategi mengajar sesuai karakteristik peserta didik","Menghilangkan perbedaan individu","Menghindari evaluasi belajar"],1,"Memahami perbedaan individu membantu guru menentukan strategi yang sesuai."]];
+let qi=0,sc=0,qdone=false;
+function rq(){const q=QZ[qi];$('#quiz').innerHTML=`<div class="qh"><span>Soal ${qi+1} dari ${QZ.length}</span><span>Skor: ${sc}</span></div><h3 style="font-size:19px">${q[0]}</h3>${q[1].map((o,i)=>`<button class="opt" data-i="${i}">${String.fromCharCode(65+i)}. ${o}</button>`).join('')}<div class="fb" id="fb"></div>`;
+$$('.opt').forEach(b=>b.onclick=()=>{const i=+b.dataset.i;$$('.opt').forEach(x=>x.disabled=true);$$('.opt')[q[2]].classList.add('ok');if(i==q[2])sc++;else b.classList.add('bad');const f=$('#fb');f.style.display='block';f.innerHTML=`<b>${i==q[2]?'Benar!':'Belum tepat.'}</b> ${q[3]}<br><button class="btn" id="nx">${qi<QZ.length-1?'Lanjut →':'Lihat hasil'}</button>`;$('#nx').onclick=()=>{qi++;qi<QZ.length?rq():res()}})}
+function res(){qdone=true;prog();const m=sc==QZ.length?'Luar biasa, kamu menguasai materi ini.':sc>=4?'Bagus! Ulangi bagian yang masih meragukan.':'Ayo pelajari lagi bagian A–D, lalu coba kuis kembali.';$('#quiz').innerHTML=`<div class="score"><div class="big">${sc}/${QZ.length}</div><p>${m}</p><button class="btn" id="rs">Ulangi kuis</button></div>`;$('#rs').onclick=()=>{qi=0;sc=0;rq()}}
+rq();
+// Progres & scroll-spy
+const seen=new Set(),ids=['a','b','c','d','q'];
+function prog(){$('#bar i').style.width=((seen.size+(qdone?1:0))/ids.length*100)+'%'}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const id=e.target.id;$$('#nav a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')=='#'+id));if(id!='q'){seen.add(id);prog()}}}),{rootMargin:'-35% 0px -55% 0px'});
+ids.forEach(i=>io.observe($('#'+i)));
+</script>
+</body>
+</html>

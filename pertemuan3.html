@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perilaku Peserta Didik sebagai Individu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f1eef6;
+  --bg-soft:#e6ddf0;
+  --paper:#ffffff;
+  --ink:#231f2e;
+  --ink-soft:#675f78;
+  --plum:#4a3863;
+  --plum-deep:#2d2140;
+  --teal:#2f7a74;
+  --teal-soft:#cdeae5;
+  --rose:#c65b6e;
+  --rose-soft:#f2d3d9;
+  --line:#ddd2ea;
+  --radius:16px;
+  --shadow:0 12px 32px -14px rgba(45,33,64,.28);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Plus Jakarta Sans', sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.65;
+  padding-bottom:60px;
+}
+h1,h2,h3,h4{font-family:'DM Serif Display', serif; color:var(--plum-deep); font-weight:400;}
+::selection{background:var(--rose-soft);}
+
+#progress-bar{
+  position:fixed; top:0; left:0; height:4px; width:0%;
+  background:linear-gradient(90deg, var(--rose), var(--teal));
+  z-index:1000;
+}
+
+nav{
+  position:sticky; top:4px; z-index:900;
+  background:rgba(255,255,255,.94); backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+  display:flex; align-items:center; gap:4px;
+  padding:12px 20px; overflow-x:auto;
+}
+nav .brand{font-family:'DM Serif Display'; font-size:1rem; color:var(--plum); margin-right:16px; white-space:nowrap;}
+nav a{
+  text-decoration:none; color:var(--ink-soft); font-size:.82rem; font-weight:600;
+  padding:8px 14px; border-radius:999px; white-space:nowrap; transition:.2s;
+}
+nav a:hover{background:var(--bg-soft); color:var(--plum);}
+nav a.active{background:var(--plum); color:#fff;}
+
+header.hero{
+  padding:64px 24px 40px; text-align:center; position:relative; overflow:hidden;
+  background:
+    radial-gradient(circle at 14% 22%, rgba(198,91,110,.13), transparent 45%),
+    radial-gradient(circle at 86% 28%, rgba(47,122,116,.14), transparent 45%);
+}
+header.hero .tag{
+  display:inline-block; font-size:.74rem; font-weight:700; color:var(--plum);
+  background:var(--bg-soft); padding:6px 16px; border-radius:999px; margin-bottom:18px;
+}
+header.hero h1{font-size:clamp(1.9rem,4.4vw,2.9rem); max-width:780px; margin:0 auto 14px; line-height:1.2;}
+header.hero p.lead{max-width:620px; margin:0 auto; color:var(--ink-soft); font-size:1.02rem;}
+header.hero .author{margin-top:22px; font-size:.84rem; color:var(--ink-soft);}
+header.hero .author b{color:var(--plum);}
+
+.goal-box{
+  max-width:680px; margin:28px auto 0; background:var(--paper); border:1px solid var(--line);
+  border-radius:14px; padding:18px 22px; text-align:left; box-shadow:var(--shadow);
+  display:flex; gap:14px; align-items:flex-start;
+}
+.goal-box .g-ico{
+  width:38px; height:38px; border-radius:10px; background:var(--teal); color:#fff;
+  display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0;
+}
+.goal-box .g-text .g-label{font-size:.72rem; font-weight:700; color:var(--teal); text-transform:uppercase; letter-spacing:.05em; margin-bottom:4px;}
+.goal-box .g-text p{font-size:.92rem; color:var(--ink); line-height:1.55;}
+
+main{max-width:960px; margin:0 auto; padding:0 22px;}
+section{padding:60px 0; border-bottom:1px dashed var(--line);}
+section:last-of-type{border-bottom:none;}
+.section-head{margin-bottom:30px;}
+.section-head .tagline{font-size:.78rem; font-weight:700; color:var(--rose); text-transform:uppercase; letter-spacing:.06em;}
+.section-head h2{font-size:clamp(1.4rem,2.8vw,1.9rem); margin-top:6px;}
+.section-head p{color:var(--ink-soft); margin-top:10px; max-width:650px;}
+
+/* ---------- INTRO PRINSIP (accordion) ---------- */
+.accordion-item{
+  border:1px solid var(--line); border-radius:12px; margin-bottom:12px; overflow:hidden; background:var(--paper);
+}
+.accordion-header{
+  display:flex; justify-content:space-between; align-items:center; gap:12px;
+  padding:16px 20px; cursor:pointer; user-select:none;
+}
+.accordion-header span.name{font-weight:700; color:var(--plum); font-size:.98rem;}
+.accordion-header .plus{
+  width:26px; height:26px; border-radius:50%; background:var(--bg-soft); color:var(--plum);
+  display:flex; align-items:center; justify-content:center; font-size:1.1rem; font-weight:700; flex-shrink:0;
+  transition:transform .25s ease;
+}
+.accordion-item.open .plus{transform:rotate(45deg); background:var(--rose); color:#fff;}
+.accordion-body{max-height:0; overflow:hidden; transition:max-height .3s ease;}
+.accordion-body-inner{padding:0 20px 18px; color:var(--ink-soft); font-size:.92rem;}
+
+/* ---------- ASPECT WHEEL (centerpiece) ---------- */
+.wheel-wrap{
+  display:flex; flex-wrap:wrap; gap:32px; align-items:center; justify-content:center; margin-top:10px;
+}
+.wheel-svg{flex:0 0 auto; cursor:default;}
+.wheel-svg .spoke{cursor:pointer; transition:.2s;}
+.wheel-svg .spoke circle.node{transition:.2s;}
+.wheel-svg .spoke:hover circle.node, .wheel-svg .spoke.active circle.node{stroke-width:3;}
+.wheel-detail{
+  flex:1; min-width:260px; max-width:420px; background:var(--paper); border:1px solid var(--line);
+  border-radius:16px; padding:24px; box-shadow:var(--shadow); min-height:220px;
+}
+.wheel-detail .wd-label{font-size:.72rem; font-weight:700; color:var(--rose); text-transform:uppercase; letter-spacing:.05em; margin-bottom:6px;}
+.wheel-detail h3{font-size:1.25rem; margin-bottom:10px;}
+.wheel-detail p{font-size:.9rem; color:var(--ink-soft); margin-bottom:12px;}
+.wheel-detail ul{margin-left:18px; font-size:.87rem; color:var(--ink-soft);}
+.wheel-detail ul li{margin-bottom:5px;}
+
+/* ---------- COMPARISON TOGGLE ---------- */
+.compare-toggle{display:flex; justify-content:center; gap:10px; margin-bottom:22px;}
+.compare-toggle button{
+  border:1px solid var(--line); background:var(--paper); color:var(--ink-soft);
+  padding:9px 18px; border-radius:999px; font-size:.85rem; font-weight:700; cursor:pointer; transition:.2s;
+}
+.compare-toggle button.active{background:var(--plum); color:#fff; border-color:var(--plum);}
+.compare-table{width:100%; border-collapse:separate; border-spacing:0 10px;}
+.compare-table th{text-align:left; font-size:.72rem; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.04em; padding:0 14px;}
+.compare-table td{background:var(--paper); border:1px solid var(--line); padding:13px 14px; font-size:.88rem; vertical-align:top;}
+.compare-table tr td:first-child{border-radius:10px 0 0 10px; font-weight:700; color:var(--plum); width:26%;}
+.compare-table tr td:last-child{border-radius:0 10px 10px 0;}
+.compare-table tr td:nth-child(2){border-left:none; border-right:none;}
+
+/* ---------- IMPLIKASI ---------- */
+.impl-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; margin-top:8px;}
+.impl-card{
+  background:var(--plum); color:#f3edf7; border-radius:14px; padding:20px;
+}
+.impl-card .i-num{font-family:'DM Serif Display'; font-size:1.6rem; color:var(--rose-soft); margin-bottom:8px;}
+.impl-card p{font-size:.88rem; color:#e6dcef; line-height:1.55;}
+
+/* ---------- QUIZ ---------- */
+.quiz-box{background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:26px; box-shadow:var(--shadow);}
+.quiz-progress-track{height:8px; background:var(--bg-soft); border-radius:999px; overflow:hidden; margin-bottom:22px;}
+.quiz-progress-fill{height:100%; width:0%; background:linear-gradient(90deg,var(--teal),var(--rose)); transition:width .3s;}
+.q-count{font-size:.78rem; color:var(--ink-soft); font-weight:700; letter-spacing:.06em; text-transform:uppercase; margin-bottom:8px;}
+.q-text{font-size:1.05rem; font-weight:700; color:var(--plum-deep); margin-bottom:18px; font-family:'Plus Jakarta Sans';}
+.q-options{display:flex; flex-direction:column; gap:10px;}
+.q-opt{
+  text-align:left; border:1.5px solid var(--line); background:var(--bg); border-radius:12px;
+  padding:13px 16px; font-size:.92rem; cursor:pointer; transition:.2s; font-family:'Plus Jakarta Sans';
+}
+.q-opt:hover{border-color:var(--rose);}
+.q-opt.correct{background:var(--teal-soft); border-color:var(--teal); color:#1c4842; font-weight:700;}
+.q-opt.wrong{background:var(--rose-soft); border-color:var(--rose); color:#7a2f3c; font-weight:700;}
+.q-opt[disabled]{cursor:default;}
+.q-feedback{margin-top:14px; font-size:.86rem; padding:12px 14px; border-radius:10px; display:none;}
+.q-feedback.show{display:block;}
+.q-feedback.ok{background:var(--teal-soft); color:#1c4842;}
+.q-feedback.no{background:var(--rose-soft); color:#7a2f3c;}
+.q-nav{display:flex; justify-content:flex-end; margin-top:20px;}
+.q-nav button{
+  background:var(--plum); color:#fff; border:none; padding:10px 22px; border-radius:999px;
+  font-weight:700; font-size:.88rem; cursor:pointer; opacity:.4; pointer-events:none; transition:.2s;
+}
+.q-nav button.ready{opacity:1; pointer-events:auto;}
+.q-nav button:hover.ready{background:var(--plum-deep);}
+.quiz-result{text-align:center; padding:20px 0;}
+.quiz-result .score{font-family:'DM Serif Display'; font-size:3rem; color:var(--rose);}
+.quiz-result p{color:var(--ink-soft); margin-top:8px;}
+.quiz-result button{
+  margin-top:18px; background:var(--teal); color:#fff; border:none; padding:11px 24px;
+  border-radius:999px; font-weight:700; cursor:pointer;
+}
+
+footer{text-align:center; padding:40px 20px 10px; color:var(--ink-soft); font-size:.82rem;}
+
+@media(max-width:640px){
+  nav{padding:10px 14px;}
+  section{padding:46px 0;}
+  .wheel-wrap{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<nav id="site-nav">
+  <span class="brand">Peserta Didik sebagai Individu</span>
+  <a href="#pendahuluan">Pendahuluan</a>
+  <a href="#aspek">Aspek-Aspek</a>
+  <a href="#perbandingan">Ilustrasi</a>
+  <a href="#implikasi">Implikasi</a>
+  <a href="#kuis">Kuis</a>
+</nav>
+
+<header class="hero">
+  <span class="tag">Mata Kuliah Psikologi Pendidikan</span>
+  <h1>Perilaku Peserta Didik sebagai Individu</h1>
+  <p class="lead">Setiap peserta didik adalah pribadi yang unik. Modul ini membahas aspek-aspek yang membentuk keunikan tersebut serta implikasinya bagi proses pendidikan.</p>
+  <p class="author">Disusun oleh <b>Martin Bernard, M.Pd.</b> — IKIP Siliwangi</p>
+
+  <div class="goal-box">
+    <div class="g-ico">🎯</div>
+    <div class="g-text">
+      <div class="g-label">Tujuan Pembelajaran</div>
+      <p>Mahasiswa mampu menjelaskan keunikan yang dimiliki oleh masing-masing peserta didik yang dipengaruhi oleh aspek fisik, intelektual/kognitif, psikis-emosional, sosial, dan lingkungan (keluarga &amp; budaya).</p>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- PENDAHULUAN -->
+  <section id="pendahuluan">
+    <div class="section-head">
+      <span class="tagline">Pendahuluan</span>
+      <h2>Peserta Didik sebagai Individu yang Unik</h2>
+      <p>Tidak ada dua peserta didik yang benar-benar sama, meski berada dalam satu kelas yang sama. Klik setiap pernyataan untuk membaca penjelasannya.</p>
+    </div>
+    <div id="accordion-intro"></div>
+  </section>
+
+  <!-- ASPEK-ASPEK -->
+  <section id="aspek">
+    <div class="section-head">
+      <span class="tagline">Inti Materi</span>
+      <h2>Aspek-Aspek yang Memengaruhi Keunikan Peserta Didik</h2>
+      <p>Klik salah satu titik pada diagram untuk melihat penjelasan tiap aspek.</p>
+    </div>
+    <div class="wheel-wrap">
+      <svg class="wheel-svg" width="320" height="320" viewBox="0 0 320 320" id="wheel-svg"></svg>
+      <div class="wheel-detail" id="wheel-detail"></div>
+    </div>
+  </section>
+
+  <!-- ILUSTRASI PERBANDINGAN -->
+  <section id="perbandingan">
+    <div class="section-head">
+      <span class="tagline">Ilustrasi</span>
+      <h2>Contoh: Dua Peserta Didik, Dua Keunikan</h2>
+      <p>Bandingkan dua ilustrasi peserta didik berikut untuk melihat bagaimana aspek-aspek di atas membentuk perbedaan individual.</p>
+    </div>
+    <div class="compare-toggle">
+      <button class="active" data-c="a">Siswa A</button>
+      <button data-c="b">Siswa B</button>
+      <button data-c="both">Bandingkan Keduanya</button>
+    </div>
+    <div id="compare-wrap"></div>
+  </section>
+
+  <!-- IMPLIKASI -->
+  <section id="implikasi">
+    <div class="section-head">
+      <span class="tagline">Implikasi Pedagogis</span>
+      <h2>Implikasi bagi Guru/Pendidik</h2>
+      <p>Memahami keunikan peserta didik membawa konsekuensi penting dalam praktik mengajar sehari-hari.</p>
+    </div>
+    <div class="impl-grid" id="impl-grid"></div>
+  </section>
+
+  <!-- KUIS -->
+  <section id="kuis">
+    <div class="section-head">
+      <span class="tagline">Uji Pemahaman</span>
+      <h2>Kuis Singkat</h2>
+      <p>Jawab 5 pertanyaan berikut untuk menguji pemahaman Anda.</p>
+    </div>
+    <div class="quiz-box" id="quiz-box"></div>
+  </section>
+
+</main>
+
+<footer>Materi Perilaku Peserta Didik sebagai Individu — Martin Bernard, M.Pd., IKIP Siliwangi</footer>
+
+<script>
+/* ================= DATA ================= */
+const introData = [
+  {name:"Individualitas dalam Pendidikan", body:"Setiap peserta didik membawa kombinasi unik dari kondisi fisik, cara berpikir, emosi, latar sosial, dan lingkungan yang membentuk caranya belajar dan berperilaku di kelas."},
+  {name:"Mengapa Guru Perlu Memahami Hal Ini", body:"Pemahaman atas keunikan individual membantu guru menghindari perlakuan yang seragam (generalisasi) dan merancang pembelajaran yang lebih relevan bagi setiap peserta didik."},
+  {name:"Hubungannya dengan Psikologi Pendidikan", body:"Psikologi pendidikan menyediakan kerangka ilmiah untuk mengenali dan menjelaskan perbedaan individual ini, sehingga dapat dijadikan dasar pengambilan keputusan pedagogis."}
+];
+
+const aspekData = [
+  {key:"fisik", label:"Fisik", color:"#c65b6e", title:"Aspek Fisik/Biologis",
+    desc:"Kondisi fisik, pertumbuhan, kematangan biologis, serta kesehatan memengaruhi energi, stamina, dan kesiapan peserta didik dalam mengikuti kegiatan belajar.",
+    points:["Kecepatan pertumbuhan dan kematangan berbeda tiap anak","Kondisi kesehatan memengaruhi konsentrasi belajar","Keterbatasan fisik dapat memerlukan penyesuaian metode pengajaran"]},
+  {key:"kognitif", label:"Kognitif", color:"#2f7a74", title:"Aspek Intelektual/Kognitif",
+    desc:"Tingkat kecerdasan, gaya berpikir, dan kecepatan memproses informasi berbeda-beda, sehingga memengaruhi cara dan kecepatan peserta didik memahami materi.",
+    points:["Perbedaan tingkat kecerdasan (IQ) dan kecerdasan majemuk","Gaya belajar: visual, auditori, kinestetik","Kecepatan pemrosesan informasi yang bervariasi"]},
+  {key:"emosi", label:"Psikis", color:"#8a5ba6", title:"Aspek Psikis/Emosional",
+    desc:"Kestabilan emosi, kepercayaan diri, motivasi, dan konsep diri memengaruhi bagaimana peserta didik merespons tantangan belajar dan interaksi di kelas.",
+    points:["Tingkat kepercayaan diri dan konsep diri (self-concept)","Kemampuan mengelola emosi dan kecemasan","Motivasi intrinsik maupun ekstrinsik dalam belajar"]},
+  {key:"sosial", label:"Sosial", color:"#c08a2e", title:"Aspek Sosial",
+    desc:"Kemampuan berinteraksi, membangun relasi dengan teman sebaya, dan keterampilan komunikasi memengaruhi partisipasi peserta didik dalam pembelajaran kolaboratif.",
+    points:["Kemampuan bekerja sama dan berkomunikasi","Status dan penerimaan dalam kelompok teman sebaya","Keterampilan sosial yang memengaruhi partisipasi di kelas"]},
+  {key:"lingkungan", label:"Lingkungan", color:"#3f6b8a", title:"Aspek Lingkungan (Keluarga & Budaya)",
+    desc:"Pola asuh orang tua, status sosial-ekonomi, serta latar belakang budaya membentuk nilai, kebiasaan, dan sikap peserta didik terhadap belajar.",
+    points:["Pola asuh dan dukungan belajar dari keluarga","Status sosial-ekonomi yang memengaruhi akses pendidikan","Latar belakang budaya yang membentuk nilai dan kebiasaan"]}
+];
+
+const compareData = {
+  a:{name:"Siswa A", rows:[
+    ["Fisik","Aktif secara fisik, senang kegiatan bergerak"],
+    ["Kognitif","Cepat memahami konsep visual dan gambar"],
+    ["Psikis","Percaya diri tinggi, mudah mengambil inisiatif"],
+    ["Sosial","Mudah bergaul, senang belajar kelompok"],
+    ["Lingkungan","Tumbuh dalam keluarga yang mendukung eksplorasi"]
+  ]},
+  b:{name:"Siswa B", rows:[
+    ["Fisik","Cenderung tenang, lebih nyaman dengan aktivitas duduk"],
+    ["Kognitif","Lebih kuat pada pemahaman melalui membaca dan menulis"],
+    ["Psikis","Pendiam, butuh waktu lebih untuk merasa nyaman"],
+    ["Sosial","Lebih nyaman belajar sendiri atau kelompok kecil"],
+    ["Lingkungan","Tumbuh dalam keluarga dengan rutinitas yang terstruktur"]
+  ]}
+};
+
+const implData = [
+  "Menerapkan pembelajaran berdiferensiasi sesuai kebutuhan dan karakteristik masing-masing peserta didik.",
+  "Melakukan asesmen diagnostik di awal pembelajaran untuk mengenali karakteristik awal peserta didik.",
+  "Membangun hubungan personal dan empati, bukan memperlakukan peserta didik secara seragam.",
+  "Berkolaborasi dengan guru BK dan orang tua dalam menangani kebutuhan khusus peserta didik.",
+  "Menyediakan lingkungan belajar yang inklusif dan responsif terhadap keberagaman peserta didik."
+];
+
+const quizData = [
+  {q:"Pernyataan yang paling tepat menggambarkan peserta didik sebagai individu adalah...", opts:["Semua peserta didik harus diperlakukan sama persis","Setiap peserta didik memiliki keunikan yang dipengaruhi berbagai aspek","Perbedaan peserta didik hanya terjadi pada nilai akademik","Keunikan peserta didik tidak memengaruhi cara mengajar"], correct:1, fb:"Setiap peserta didik unik karena dipengaruhi aspek fisik, kognitif, psikis, sosial, dan lingkungan secara bersamaan."},
+  {q:"Gaya belajar visual, auditori, dan kinestetik merupakan contoh perbedaan individual pada aspek...", opts:["Fisik","Intelektual/Kognitif","Sosial","Lingkungan"], correct:1, fb:"Gaya belajar merupakan bagian dari aspek intelektual/kognitif peserta didik."},
+  {q:"Pola asuh orang tua dan status sosial-ekonomi termasuk ke dalam aspek...", opts:["Psikis/Emosional","Sosial","Lingkungan (Keluarga & Budaya)","Fisik"], correct:2, fb:"Pola asuh dan status sosial-ekonomi termasuk aspek lingkungan, khususnya keluarga dan budaya."},
+  {q:"Kepercayaan diri dan kemampuan mengelola kecemasan termasuk aspek...", opts:["Psikis/Emosional","Fisik/Biologis","Sosial","Kognitif"], correct:0, fb:"Kepercayaan diri dan pengelolaan emosi termasuk aspek psikis/emosional."},
+  {q:"Salah satu implikasi memahami keunikan peserta didik bagi guru adalah...", opts:["Mengabaikan perbedaan individual demi efisiensi","Menerapkan pembelajaran berdiferensiasi sesuai kebutuhan peserta didik","Menyamakan seluruh metode pengajaran tanpa pengecualian","Menilai peserta didik hanya dari aspek akademik"], correct:1, fb:"Guru perlu menerapkan pembelajaran berdiferensiasi agar sesuai dengan kebutuhan masing-masing peserta didik."}
+];
+
+/* ================= RENDER: INTRO ACCORDION ================= */
+const accEl = document.getElementById('accordion-intro');
+introData.forEach((item,i)=>{
+  const div = document.createElement('div');
+  div.className = 'accordion-item';
+  div.innerHTML = `
+    <div class="accordion-header" onclick="toggleAccordion(${i})">
+      <span class="name">${item.name}</span>
+      <span class="plus">+</span>
+    </div>
+    <div class="accordion-body" id="acc-body-${i}">
+      <div class="accordion-body-inner">${item.body}</div>
+    </div>`;
+  accEl.appendChild(div);
+});
+function toggleAccordion(i){
+  const item = accEl.children[i];
+  const body = document.getElementById('acc-body-'+i);
+  const isOpen = item.classList.contains('open');
+  [...accEl.children].forEach((el,idx)=>{
+    el.classList.remove('open');
+    document.getElementById('acc-body-'+idx).style.maxHeight = null;
+  });
+  if(!isOpen){
+    item.classList.add('open');
+    body.style.maxHeight = body.scrollHeight + 'px';
+  }
+}
+
+/* ================= RENDER: ASPECT WHEEL ================= */
+const svg = document.getElementById('wheel-svg');
+const cx = 160, cy = 160, r = 105;
+const nsSvg = "http://www.w3.org/2000/svg";
+
+function mkEl(tag, attrs){
+  const el = document.createElementNS(nsSvg, tag);
+  for(const k in attrs) el.setAttribute(k, attrs[k]);
+  return el;
+}
+
+// center hub
+svg.appendChild(mkEl('circle', {cx:cx, cy:cy, r:46, fill:'#4a3863'}));
+const hubText1 = mkEl('text', {x:cx, y:cy-4, 'text-anchor':'middle', 'font-family':'DM Serif Display', 'font-size':13, fill:'#fff'});
+hubText1.textContent = 'Keunikan';
+svg.appendChild(hubText1);
+const hubText2 = mkEl('text', {x:cx, y:cy+14, 'text-anchor':'middle', 'font-family':'DM Serif Display', 'font-size':13, fill:'#fff'});
+hubText2.textContent = 'Peserta Didik';
+svg.appendChild(hubText2);
+
+aspekData.forEach((a,i)=>{
+  const angle = (i / aspekData.length) * 2 * Math.PI - Math.PI/2;
+  const nx = cx + r * Math.cos(angle);
+  const ny = cy + r * Math.sin(angle);
+
+  const g = mkEl('g', {class:'spoke', 'data-key':a.key});
+  g.appendChild(mkEl('line', {x1:cx, y1:cy, x2:nx, y2:ny, stroke:'#ddd2ea', 'stroke-width':2}));
+  const node = mkEl('circle', {class:'node', cx:nx, cy:ny, r:30, fill:a.color, stroke:'#fff', 'stroke-width':2});
+  g.appendChild(node);
+  const label = mkEl('text', {x:nx, y:ny+4, 'text-anchor':'middle', 'font-family':'Plus Jakarta Sans', 'font-weight':700, 'font-size':11, fill:'#fff'});
+  label.textContent = a.label;
+  g.appendChild(label);
+  g.addEventListener('click', ()=> selectAspect(a.key));
+  svg.appendChild(g);
+});
+
+function selectAspect(key){
+  const a = aspekData.find(x=>x.key===key);
+  document.querySelectorAll('.spoke').forEach(s=> s.classList.toggle('active', s.dataset.key===key));
+  document.getElementById('wheel-detail').innerHTML = `
+    <div class="wd-label">Aspek Terpilih</div>
+    <h3 style="color:${a.color}">${a.title}</h3>
+    <p>${a.desc}</p>
+    <ul>${a.points.map(p=>`<li>${p}</li>`).join('')}</ul>`;
+}
+selectAspect(aspekData[0].key);
+
+/* ================= RENDER: COMPARISON ================= */
+const compareWrap = document.getElementById('compare-wrap');
+function renderCompare(mode){
+  if(mode === 'both'){
+    let rowsHtml = '';
+    compareData.a.rows.forEach((row,i)=>{
+      rowsHtml += `<tr><td>${row[0]}</td><td>${row[1]}</td><td>${compareData.b.rows[i][1]}</td></tr>`;
+    });
+    compareWrap.innerHTML = `
+      <table class="compare-table">
+        <tr><th>Aspek</th><th>Siswa A</th><th>Siswa B</th></tr>
+        ${rowsHtml}
+      </table>`;
+  } else {
+    const d = compareData[mode];
+    let rowsHtml = d.rows.map(row=>`<tr><td>${row[0]}</td><td>${row[1]}</td></tr>`).join('');
+    compareWrap.innerHTML = `
+      <table class="compare-table">
+        <tr><th>Aspek</th><th>${d.name}</th></tr>
+        ${rowsHtml}
+      </table>`;
+  }
+}
+document.querySelectorAll('.compare-toggle button').forEach(btn=>{
+  btn.onclick = ()=>{
+    document.querySelectorAll('.compare-toggle button').forEach(b=> b.classList.remove('active'));
+    btn.classList.add('active');
+    renderCompare(btn.dataset.c);
+  };
+});
+renderCompare('a');
+
+/* ================= RENDER: IMPLIKASI ================= */
+const implGrid = document.getElementById('impl-grid');
+implData.forEach((t,i)=>{
+  const div = document.createElement('div');
+  div.className = 'impl-card';
+  div.innerHTML = `<div class="i-num">${String(i+1).padStart(2,'0')}</div><p>${t}</p>`;
+  implGrid.appendChild(div);
+});
+
+/* ================= QUIZ ================= */
+let currentQ = 0, score = 0;
+const quizBox = document.getElementById('quiz-box');
+function renderQuiz(){
+  if(currentQ >= quizData.length){
+    quizBox.innerHTML = `
+      <div class="quiz-result">
+        <div class="score">${score}/${quizData.length}</div>
+        <p>${score === quizData.length ? 'Sempurna! Pemahaman Anda sangat baik.' : score >= quizData.length/2 ? 'Bagus! Terus perdalam materinya.' : 'Yuk baca ulang materi di atas, lalu coba lagi.'}</p>
+        <button onclick="restartQuiz()">Ulangi Kuis</button>
+      </div>`;
+    return;
+  }
+  const item = quizData[currentQ];
+  quizBox.innerHTML = `
+    <div class="quiz-progress-track"><div class="quiz-progress-fill" style="width:${(currentQ/quizData.length)*100}%"></div></div>
+    <div class="q-count">Pertanyaan ${currentQ+1} dari ${quizData.length}</div>
+    <div class="q-text">${item.q}</div>
+    <div class="q-options" id="q-options"></div>
+    <div class="q-feedback" id="q-feedback"></div>
+    <div class="q-nav"><button id="next-btn" onclick="nextQuestion()">Lanjut</button></div>`;
+  const optsEl = document.getElementById('q-options');
+  item.opts.forEach((opt,i)=>{
+    const b = document.createElement('button');
+    b.className = 'q-opt';
+    b.textContent = opt;
+    b.onclick = ()=> answerQuestion(i);
+    optsEl.appendChild(b);
+  });
+}
+function answerQuestion(i){
+  const item = quizData[currentQ];
+  const opts = document.querySelectorAll('#q-options .q-opt');
+  opts.forEach(o=> o.setAttribute('disabled','true'));
+  opts[item.correct].classList.add('correct');
+  if(i !== item.correct){ opts[i].classList.add('wrong'); } else { score++; }
+  const fb = document.getElementById('q-feedback');
+  fb.classList.add('show', i === item.correct ? 'ok' : 'no');
+  fb.textContent = item.fb;
+  document.getElementById('next-btn').classList.add('ready');
+}
+function nextQuestion(){ currentQ++; renderQuiz(); }
+function restartQuiz(){ currentQ = 0; score = 0; renderQuiz(); }
+renderQuiz();
+
+/* ================= PROGRESS BAR + SCROLL SPY ================= */
+const progressBar = document.getElementById('progress-bar');
+const navLinks = document.querySelectorAll('#site-nav a');
+const sections = document.querySelectorAll('main section');
+window.addEventListener('scroll', ()=>{
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  progressBar.style.width = (scrollTop/docHeight*100) + '%';
+  let currentSection = '';
+  sections.forEach(sec=>{
+    const rect = sec.getBoundingClientRect();
+    if(rect.top <= 140 && rect.bottom >= 140){ currentSection = sec.id; }
+  });
+  navLinks.forEach(link=>{
+    link.classList.toggle('active', link.getAttribute('href') === '#'+currentSection);
+  });
+});
+</script>
+</body>
+</html>
